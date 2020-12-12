@@ -17,35 +17,34 @@ def learnersAll():
     if request.method == "POST":
         conn = None
         cursor = None
-        first_name = request.json.get("first_name")
-        middle_name = request.json.get("middle_name")
-        last_name = request.json.get("last_name")
-        university = request.json.get("university")
-        program = request.json.get("program")
-        bio = request.json.get("bio")
-        email = request.json.get("email")
-        phone = request.json.get("phone")
+        learner_first_name = request.json.get("learner_first_name")
+        learner_middle_name = request.json.get("learner_middle_name")
+        learner_last_name = request.json.get("learner_last_name")
+        learner_university = request.json.get("learner_university")
+        learner_program = request.json.get("learner_program")
+        learner_bio = request.json.get("learner_bio")
+        learner_email = request.json.get("learner_email")
+        learner_phone = request.json.get("learner_phone")
         rows = None
         try:
             conn = mariadb.connect(host=dbcreds.host, password=dbcreds.password,
                                    user=dbcreds.user, port=dbcreds.port, database=dbcreds.database)
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO learners (first_name, middle_name, last_name, university, program, bio, email, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
-                           first_name, middle_name, last_name, university, program, bio, email, phone])
+            cursor.execute("INSERT INTO learners (learner_first_name, learner_middle_name, learner_last_name, learner_university, learner_program, learner_bio, learner_email, learner_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
+                           learner_first_name, learner_middle_name, learner_last_name, learner_university, learner_program, learner_bio, learner_email, learner_phone])
             rows = cursor.rowcount
             if (rows == 1):
                 learner_id = cursor.lastrowid
-                print(learner_id)
             conn.commit()
             new_learner = {
-                "first_name": first_name,
-                "middle_name": middle_name,
-                "last_name": last_name,
-                "university": university,
-                "program": program,
-                "bio": bio,
-                "email": email,
-                "phone": phone,
+                "learner_first_name": learner_first_name,
+                "learner_middle_name": learner_middle_name,
+                "learner_last_name": learner_last_name,
+                "learner_university": learner_university,
+                "learner_program": learner_program,
+                "learner_bio": learner_bio,
+                "learner_email": learner_email,
+                "learner_phone": learner_phone,
             }
             sendLearner = json.dumps(new_learner)
         except Exception as error:
@@ -71,35 +70,34 @@ def tutorsAll():
     if request.method == "POST":
         conn = None
         cursor = None
-        first_name = request.json.get("first_name")
-        middle_name = request.json.get("middle_name")
-        last_name = request.json.get("last_name")
-        university = request.json.get("university")
-        program = request.json.get("program")
-        bio = request.json.get("bio")
-        email = request.json.get("email")
-        phone = request.json.get("phone")
+        tutor_first_name = request.json.get("tutor_first_name")
+        tutor_middle_name = request.json.get("tutor_middle_name")
+        tutor_last_name = request.json.get("tutor_last_name")
+        tutor_university = request.json.get("tutor_university")
+        tutor_program = request.json.get("tutor_program")
+        tutor_bio = request.json.get("tutor_bio")
+        tutor_email = request.json.get("tutor_email")
+        tutor_phone = request.json.get("tutor_phone")
         rows = None
         try:
             conn = mariadb.connect(host=dbcreds.host, password=dbcreds.password,
                                    user=dbcreds.user, port=dbcreds.port, database=dbcreds.database)
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO tutors (first_name, middle_name, last_name, university, program, bio, email, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
-                           first_name, middle_name, last_name, university, program, bio, email, phone])
+            cursor.execute("INSERT INTO tutors (tutor_first_name, tutor_middle_name, tutor_last_name, tutor_university, tutor_program, tutor_bio, tutor_email, tutor_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
+                           tutor_first_name, tutor_middle_name, tutor_last_name, tutor_university, tutor_program, tutor_bio, tutor_email, tutor_phone])
             rows = cursor.rowcount
             if (rows == 1):
                 tutor_id = cursor.lastrowid
-                print(tutor_id)
             conn.commit()
             new_tutor = {
-                "first_name": first_name,
-                "middle_name": middle_name,
-                "last_name": last_name,
-                "university": university,
-                "program": program,
-                "bio": bio,
-                "email": email,
-                "phone": phone,
+                "tutor_first_name": tutor_first_name,
+                "tutor_middle_name": tutor_middle_name,
+                "tutor_last_name": tutor_last_name,
+                "tutor_university": tutor_university,
+                "tutor_program": tutor_program,
+                "tutor_bio": tutor_bio,
+                "tutor_email": tutor_email,
+                "tutor_phone": tutor_phone,
             }
             sendTutor = json.dumps(new_tutor)
         except Exception as error:
